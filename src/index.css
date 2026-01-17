@@ -50,3 +50,35 @@ body{
   animation: logo-scroll 30s linear infinite;
 }
 
+.pdf-root {
+  font-family: "Space Mono", monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #111;
+}
+
+/* PREVIEW MODE (auto height) */
+.pdf-page {
+  background: #fffdf5;
+  padding: 28px 32px;
+  box-sizing: border-box;
+}
+
+/* PDF MODE ONLY */
+.pdf-mode .pdf-page {
+  width: 210mm;
+  height: 297mm; /* FIXED, NOT MIN-HEIGHT */
+}
+
+/* PREVENT TEXT CUT */
+.pdf-page p,
+.pdf-page li {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* CLEAN PAGE BREAK */
+.page-break {
+  break-before: page;
+  page-break-before: always;
+}
