@@ -1,4 +1,7 @@
+"use client";
+
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 
 export default function Navbar() {
@@ -8,19 +11,35 @@ export default function Navbar() {
   const navItems = [
     {
       label: "Stamp Papers",
-      submenu: ["Buy e-Stamp", "State-wise e-Stamp", "Stamp Duty Guide"],
+      submenu: [
+        { name: "Buy e-Stamp", path: "#" },
+        { name: "State-wise e-Stamp", path: "#" },
+        { name: "Stamp Duty Guide", path: "#" },
+      ],
     },
     {
       label: "Legal Documents",
-      submenu: ["Rental Agreement", "Affidavit", "Power of Attorney"],
+      submenu: [
+        { name: "Rental Agreement", path: "/rent-agreement" },
+        { name: "Affidavit", path: "#" },
+        { name: "Power of Attorney", path: "#" },
+      ],
     },
     {
       label: "Services",
-      submenu: ["Document Drafting", "Notary Support", "Consultation"],
+      submenu: [
+        { name: "Document Drafting", path: "#" },
+        { name: "Notary Support", path: "#" },
+        { name: "Consultation", path: "#" },
+      ],
     },
     {
       label: "Resources",
-      submenu: ["Blogs", "FAQs", "Legal Guides"],
+      submenu: [
+        { name: "Blogs", path: "#" },
+        { name: "FAQs", path: "#" },
+        { name: "Legal Guides", path: "#" },
+      ],
     },
   ];
 
@@ -43,21 +62,21 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <div className="flex items-center gap-2">
+            <Link to="/" className="flex items-center gap-2">
               <div className="h-9 w-9 rounded-lg bg-gradient-to-br from-indigo-600 to-blue-500 text-white flex items-center justify-center font-bold">
                 L
               </div>
               <span className="text-lg font-semibold text-slate-900">
                 LexDraft
               </span>
-            </div>
+            </Link>
 
             {/* Desktop Menu */}
             <div className="hidden lg:flex items-center gap-8">
               {navItems.map((item, idx) => (
                 <div
                   key={idx}
-                  className="relative group"
+                  className="relative"
                   onMouseEnter={() => setActiveDropdown(idx)}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
@@ -68,54 +87,54 @@ export default function Navbar() {
 
                   {/* Dropdown */}
                   <div
-  className={`absolute left-0 mt-3 w-56 rounded-xl bg-white shadow-xl border border-slate-100 z-50
-  transition-all duration-300
-  ${
-    activeDropdown === idx
-      ? "opacity-100 translate-y-0 visible"
-      : "opacity-0 -translate-y-2 invisible"
-  }`}
->
-  {item.submenu.map((sub, subIdx) => (
-    <a
-      key={subIdx}
-      href="#"
-      className="block px-5 py-3 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 transition"
-    >
-      {sub}
-    </a>
-  ))}
-</div>
-
+                    className={`absolute left-0 mt-3 w-56 rounded-xl bg-white shadow-xl border border-slate-100 z-50
+                    transition-all duration-300
+                    ${
+                      activeDropdown === idx
+                        ? "opacity-100 translate-y-0 visible"
+                        : "opacity-0 -translate-y-2 invisible"
+                    }`}
+                  >
+                    {item.submenu.map((sub, subIdx) => (
+                      <Link
+                        key={subIdx}
+                        to={sub.path}
+                        className="block px-5 py-3 text-sm text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 transition"
+                      >
+                        {sub.name}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               ))}
 
-              <a
-                href="#"
+              <Link
+                to="/get-started"
                 className="px-5 py-2 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition shadow-sm"
               >
                 Get Started
-              </a>
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
             <button
-              onClick={() => setMenuOpen(!menuOpen)}
+              onClick={() => setMenuOpen(true)}
               className="lg:hidden text-slate-800"
             >
-              {menuOpen ? <X size={26} /> : <Menu size={26} />}
+              <Menu size={26} />
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Overlay */}
         <div
-          className={`lg:hidden fixed inset-0 z-50 bg-black/40 transition-opacity ${
+          className={`lg:hidden fixed inset-0 z-40 bg-black/40 transition-opacity ${
             menuOpen ? "opacity-100 visible" : "opacity-0 invisible"
           }`}
           onClick={() => setMenuOpen(false)}
         />
 
+        {/* Mobile Drawer */}
         <div
           className={`lg:hidden fixed top-0 right-0 z-50 h-full w-80 bg-white shadow-xl transform transition-transform duration-300
           ${menuOpen ? "translate-x-0" : "translate-x-full"}`}
@@ -138,24 +157,26 @@ export default function Navbar() {
                 </summary>
                 <div className="ml-3 flex flex-col gap-2 pb-2">
                   {item.submenu.map((sub, subIdx) => (
-                    <a
+                    <Link
                       key={subIdx}
-                      href="#"
+                      to={sub.path}
+                      onClick={() => setMenuOpen(false)}
                       className="text-sm text-slate-600 hover:text-indigo-600 transition"
                     >
-                      {sub}
-                    </a>
+                      {sub.name}
+                    </Link>
                   ))}
                 </div>
               </details>
             ))}
 
-            <a
-              href="#"
+            <Link
+              to="/get-started"
+              onClick={() => setMenuOpen(false)}
               className="mt-4 px-4 py-3 rounded-lg bg-indigo-600 text-white text-center font-medium hover:bg-indigo-700 transition"
             >
               Get Started
-            </a>
+            </Link>
           </div>
         </div>
       </nav>
