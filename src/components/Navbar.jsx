@@ -20,9 +20,30 @@ export default function Navbar() {
     {
       label: "Legal Documents",
       submenu: [
-        { name: "Rental Agreement", path: "/rent-agreement" },
-        { name: "Affidavit", path: "#" },
-        { name: "Power of Attorney", path: "#" },
+        { name: "Address Proof", path: "/address-proof" },
+        { name: "Lost Document", path: "/lost-document" },
+        { name: "Marriage Registration", path: "/marriage-registration" },
+        {
+          name: "Name Addition (Birth Certificate)",
+          path: "/name-addition-birth-certificate",
+        },
+        { name: "Name Correction", path: "/name-correction" },
+        {
+          name: "After Marriage Name Change",
+          path: "/after-marriage-name-change",
+        },
+        { name: "Signature Change", path: "/signature" },
+        { name: "First Baby", path: "/first-baby" },
+        { name: "Single Girl Child", path: "/single-girl" },
+        { name: "Additional Name", path: "/additional-name" },
+        { name: "Birth Certificate", path: "/birth-certificate" },
+        { name: "Short Attendance", path: "/short-attendence" },
+        { name: "Anti Ragging", path: "/anti-ragging" },
+        { name: "Education Loan", path: "/education-loan" },
+        { name: "Gap Year", path: "/gap-year" },
+        { name: "Income Certificate", path: "/income" },
+        { name: "Name Change", path: "/name-change" },
+        { name: "Marriage Register", path: "/marriage-register" },
       ],
     },
     {
@@ -87,7 +108,7 @@ export default function Navbar() {
 
                   {/* Dropdown */}
                   <div
-                    className={`absolute left-0 mt-3 w-56 rounded-xl bg-white shadow-xl border border-slate-100 z-50
+                    className={`absolute left-0 mt-3 w-72 rounded-xl bg-white shadow-xl border border-slate-100 z-50
                     transition-all duration-300
                     ${
                       activeDropdown === idx
