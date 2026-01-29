@@ -97,7 +97,7 @@ export default function MarriageRegistration() {
         </div>
 
         {/* ================= PDF PREVIEW ================= */}
-        <div className="bg-gray-100 rounded shadow overflow-hidden flex justify-center h-screen">
+        <div className="bg-gray-100 rounded shadow flex justify-center h-screen overflow-y-auto">
 
           <div className="flex justify-center"
             style={{
@@ -106,7 +106,7 @@ export default function MarriageRegistration() {
             }}>
             <div style={{
               width: "100%",
-              maxWidth: "297mm",   // 👈 desktop limit
+              maxWidth: "820px",   // 👈 desktop limit
               aspectRatio: "210 / 297",
               display: "flex",
               justifyContent: "center",
@@ -114,18 +114,15 @@ export default function MarriageRegistration() {
               <div ref={pdfRef}>
 
                 {/* ================= PAGE 1 ================= */}
-                <div
+                <div className="bg-white my-6 shadow-xl"
                   style={{
                     width: "210mm",
-                    height: "297mm",
-                    backgroundColor: "#fff",
-                    color: "#000",
+                    minHeight: "297mm",
                     fontFamily: "'Times New Roman', Times, serif",
                     fontSize: "12pt",
                     lineHeight: "1.55",
                     padding: "25px",
                     boxSizing: "border-box",
-                    overflow: "hidden",
                   }}
                 >
                   <div style={{ textAlign: "center", fontWeight: "bold", textDecoration: "underline", fontSize: "15pt", marginBottom: "20px" }}>
