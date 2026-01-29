@@ -21,6 +21,8 @@ import GapYear from './pages/GapYear'
 import Income from './pages/Income'
 import NameChange from './pages/NameChange'
 import MarriageRegister from './pages/MarriageRegister'
+import RentalAgreements from './pages/RentalAgreements'
+// import RentAgreementPage from './pages/RentAgreementPage'
 
 
 const App = () => {
@@ -47,6 +49,7 @@ const App = () => {
         <Route path="/income" element={<Income />} />
         <Route path="/name-change" element={<NameChange />} />
         <Route path="/marriage-register" element={<MarriageRegister />} />
+        <Route path="/rental-agreements" element={<RentalAgreements/>}></Route>
       </Routes>
       <Footer/>
     </div>

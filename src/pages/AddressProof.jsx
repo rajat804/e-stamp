@@ -47,8 +47,8 @@ export default function AddressProof() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f3f1fa] p-6">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="min-h-screen bg-[#f3f1fa] p-6 border border-red-300">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
 
         {/* ================= FORM ================= */}
         <div className="bg-white p-6 rounded-xl shadow border border-purple-200">
@@ -82,93 +82,103 @@ export default function AddressProof() {
         </div>
 
         {/* ================= PDF PREVIEW ================= */}
-        <div className="bg-gray-100 p-4 rounded shadow overflow-auto max-h-[90vh]">
-          <div
-            ref={pdfRef}
+        <div className="bg-gray-100 rounded shadow overflow-hidden flex justify-center h-screen">
+          <div className="flex justify-center"
             style={{
-              width: "210mm",
-              height: "296mm",              // ✅ FIX: exact single page
-              backgroundColor: "#ffffff",
-              color: "#000000",
-              fontFamily: "'Times New Roman', Times, serif",
-              fontSize: "12pt",
-              lineHeight: "1.55",
-              padding: "20mm 22mm",
-              boxSizing: "border-box",
-              margin: 0,
-              overflow: "hidden",           // ✅ CRITICAL
-              transform: "scale(0.985)",    // ✅ rounding fix
-              transformOrigin: "top left",
-            }}
-          >
-            {/* TITLE */}
-            <div style={{ 
-              textAlign: "center", 
-              marginBottom: "24px",
-              fontSize: "14pt",
-              fontWeight: "bold",
-              textDecoration: "underline",
-              letterSpacing: "0.4px",
+              width: "100%",
+              maxWidth: "100%",
             }}>
-              AFFIDAVIT
-            </div>
+            <div style={{
+              width: "100%",
+              maxWidth: "820px",   // 👈 desktop limit
+              aspectRatio: "210 / 297",
+              display: "flex",
+              justifyContent: "center",
+            }}>
+              <div
+                ref={pdfRef}
+                style={{
+                  width: "210mm",
+                  height: "297mm",
+                  backgroundColor: "#fff",
+                  color: "#000",
+                  fontFamily: "'Times New Roman', Times, serif",
+                  fontSize: "12pt",
+                  lineHeight: "1.55",
+                  padding: "25px",
+                  boxSizing: "border-box",
+                  overflow: "hidden",
+                }}
+              >
+                {/* TITLE */}
+                <div style={{
+                  textAlign: "center",
+                  marginBottom: "24px",
+                  fontSize: "14pt",
+                  fontWeight: "bold",
+                  textDecoration: "underline",
+                  letterSpacing: "0.4px",
+                }}>
+                  AFFIDAVIT
+                </div>
 
-            {/* INTRO */}
-            <p style={{ margin: "0 0 16px 0", textAlign: "justify" }}>
-              I,{" "}
-              <b>{data.name || "________________________"}</b>{" "}
-              <b>{data.relationType || "S/D/W/O"}</b>{" "}
-              <b>{data.relationName || "________________________"}</b>{" "}
-              R/O{" "}
-              <b>{data.residentOf || "________________________"}</b>{" "}
-              do hereby solemnly affirm and declare as under:
-            </p>
+                {/* INTRO */}
+                <p style={{ margin: "0 0 16px 0", textAlign: "justify" }}>
+                  I,{" "}
+                  <b>{data.name || "________________________"}</b>{" "}
+                  <b>{data.relationType || "S/D/W/O"}</b>{" "}
+                  <b>{data.relationName || "________________________"}</b>{" "}
+                  R/O{" "}
+                  <b>{data.residentOf || "________________________"}</b>{" "}
+                  do hereby solemnly affirm and declare as under:
+                </p>
 
-            {/* POINTS */}
-            <div style={{ marginLeft: "12px" }}>
-              <p style={{ margin: "12px 0", textIndent: "-12px" }}>
-                1. That I was previously residing at{" "}
-                <b>{data.oldAddress || "__________________________________________________"}</b>.
-              </p>
-              <p style={{ margin: "12px 0", textIndent: "-12px" }}>
-                2. That now I have shifted my new address i.e.{" "}
-                <b>{data.newAddress || "__________________________________________________"}</b>.
-              </p>
-              <p style={{ margin: "12px 0", textIndent: "-12px" }}>
-                3. That I have no any documentary proof so I am swearing this affidavit to proof my present residential address.
-              </p>
-              <p style={{ margin: "12px 0", textIndent: "-12px" }}>
-                4. That it is my true and correct statement.
-              </p>
-            </div>
+                {/* POINTS */}
+                <div style={{ marginLeft: "12px" }}>
+                  <p style={{ margin: "12px 0", textIndent: "-12px" }}>
+                    1. That I was previously residing at{" "}
+                    <b>{data.oldAddress || "__________________________________________________"}</b>.
+                  </p>
+                  <p style={{ margin: "12px 0", textIndent: "-12px" }}>
+                    2. That now I have shifted my new address i.e.{" "}
+                    <b>{data.newAddress || "__________________________________________________"}</b>.
+                  </p>
+                  <p style={{ margin: "12px 0", textIndent: "-12px" }}>
+                    3. That I have no any documentary proof so I am swearing this affidavit to proof my present residential address.
+                  </p>
+                  <p style={{ margin: "12px 0", textIndent: "-12px" }}>
+                    4. That it is my true and correct statement.
+                  </p>
+                </div>
 
-            {/* DEPONENT */}
-            <div style={{ marginTop: "50px", textAlign: "right", fontWeight: "bold" }}>
-              DEPONENT
-            </div>
+                {/* DEPONENT */}
+                <div style={{ marginTop: "50px", textAlign: "right", fontWeight: "bold" }}>
+                  DEPONENT
+                </div>
 
-            {/* VERIFICATION */}
-            <div style={{ marginTop: "45px" }}>
-              <div style={{ fontWeight: "bold", marginBottom: "12px" }}>
-                VERIFICATION
-              </div>
-              <p style={{ margin: "0 0 16px 0", textAlign: "justify" }}>
-                Verified at{" "}
-                <b>{data.verificationPlace || "________"}</b>{" "}
-                on this{" "}
-                <b>{data.verificationDay || "__"}</b>{" "}
-                day of{" "}
-                <b>{data.verificationMonth || "________"}</b>, 2025 that the contents of the 
-                above affidavit are true and correct to the best of my knowledge and belief 
-                and nothing material has been concealed therefrom.
-              </p>
-              <div style={{ marginTop: "50px", textAlign: "right", fontWeight: "bold" }}>
-                DEPONENT
+                {/* VERIFICATION */}
+                <div style={{ marginTop: "45px" }}>
+                  <div style={{ fontWeight: "bold", marginBottom: "12px" }}>
+                    VERIFICATION
+                  </div>
+                  <p style={{ margin: "0 0 16px 0", textAlign: "justify" }}>
+                    Verified at{" "}
+                    <b>{data.verificationPlace || "________"}</b>{" "}
+                    on this{" "}
+                    <b>{data.verificationDay || "__"}</b>{" "}
+                    day of{" "}
+                    <b>{data.verificationMonth || "________"}</b>, 2025 that the contents of the
+                    above affidavit are true and correct to the best of my knowledge and belief
+                    and nothing material has been concealed therefrom.
+                  </p>
+                  <div style={{ marginTop: "50px", textAlign: "right", fontWeight: "bold" }}>
+                    DEPONENT
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );

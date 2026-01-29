@@ -89,111 +89,124 @@ export default function EducationLoan() {
         </div>
 
         {/* ================= PDF PREVIEW ================= */}
-        <div className="bg-gray-100 p-4 rounded shadow overflow-auto max-h-[90vh]">
-          <div
-            ref={pdfRef}
+        <div className="bg-gray-100 rounded shadow overflow-hidden flex justify-center h-screen">
+          <div className="flex justify-center"
             style={{
-              width: "210mm",
-              height: "296mm",
-              backgroundColor: "#ffffff",
-              color: "#000000",
-              fontFamily: "'Times New Roman', Times, serif",
-              fontSize: "12pt",
-              lineHeight: "1.65",
-              padding: "24mm 26mm",
-              boxSizing: "border-box",
-              overflow: "hidden",
-              transform: "scale(0.985)",
-              transformOrigin: "top left",
-            }}
-          >
-            {/* TITLE */}
-            <div
-              style={{
-                textAlign: "center",
-                fontWeight: "bold",
-                textDecoration: "underline",
-                marginBottom: "22px",
-                fontSize: "15pt",
-              }}
-            >
-              AFFIDAVIT
-            </div>
+              width: "100%",
+              maxWidth: "100%",
+            }}>
+            <div style={{
+              width: "100%",
+              maxWidth: "820px",   // 👈 desktop limit
+              aspectRatio: "210 / 297",
+              display: "flex",
+              justifyContent: "center",
+            }}>
 
-            {/* INTRO */}
-            <p style={{ textAlign: "justify" }}>
-              We, (1) <b>{data.deponent1Name || "____________________"}</b>{" "}
-              S/O <b>{data.deponent1Father || "____________________"}</b> (2){" "}
-              <b>{data.deponent2Name || "____________________"}</b> S/O{" "}
-              <b>{data.deponent2Father || "____________________"}</b> both R/o{" "}
-              <b>{data.address || "____________________"}</b>, do hereby
-              solemnly affirm and declare as under:-
-            </p>
+              <div
+                ref={pdfRef}
+                style={{
+                  width: "210mm",
+                  height: "297mm",
+                  backgroundColor: "#fff",
+                  color: "#000",
+                  fontFamily: "'Times New Roman', Times, serif",
+                  fontSize: "12pt",
+                  lineHeight: "1.55",
+                  padding: "25px",
+                  boxSizing: "border-box",
+                  overflow: "hidden",
+                }}
+              >
+                {/* TITLE */}
+                <div
+                  style={{
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    textDecoration: "underline",
+                    marginBottom: "22px",
+                    fontSize: "15pt",
+                  }}
+                >
+                  AFFIDAVIT
+                </div>
 
-            {/* POINTS */}
-            <div style={{ marginLeft: "20px", marginTop: "16px" }}>
-              <p style={{ textIndent: "-20px", marginBottom: "10px" }}>
-                (I) That we are citizen of India.
-              </p>
+                {/* INTRO */}
+                <p style={{ textAlign: "justify" }}>
+                  We, (1) <b>{data.deponent1Name || "____________________"}</b>{" "}
+                  S/O <b>{data.deponent1Father || "____________________"}</b> (2){" "}
+                  <b>{data.deponent2Name || "____________________"}</b> S/O{" "}
+                  <b>{data.deponent2Father || "____________________"}</b> both R/o{" "}
+                  <b>{data.address || "____________________"}</b>, do hereby
+                  solemnly affirm and declare as under:-
+                </p>
 
-              <p style={{ textIndent: "-20px", marginBottom: "10px" }}>
-                (II) That we are bonafide resident of{" "}
-                <b>{data.address || "____________________"}</b>.
-              </p>
+                {/* POINTS */}
+                <div style={{ marginLeft: "20px", marginTop: "16px" }}>
+                  <p style={{ textIndent: "-20px", marginBottom: "10px" }}>
+                    (I) That we are citizen of India.
+                  </p>
 
-              <p style={{ textIndent: "-20px", marginBottom: "10px" }}>
-                (III) That neither we nor any member of our family has applied
-                for/availed any type of Education Loan for any member of the
-                family from any bank / financial Institution.
-              </p>
+                  <p style={{ textIndent: "-20px", marginBottom: "10px" }}>
+                    (II) That we are bonafide resident of{" "}
+                    <b>{data.address || "____________________"}</b>.
+                  </p>
 
-              <p style={{ textIndent: "-20px", marginBottom: "10px" }}>
-                (IV) That we have applied for an education loan from State Bank
-                of India for{" "}
-                <b>{data.studentName || "____________________"}</b> for{" "}
-                <b>{data.course}</b> ({data.duration} years) from{" "}
-                <b>{data.institute || "____________________"}</b>.
-              </p>
+                  <p style={{ textIndent: "-20px", marginBottom: "10px" }}>
+                    (III) That neither we nor any member of our family has applied
+                    for/availed any type of Education Loan for any member of the
+                    family from any bank / financial Institution.
+                  </p>
 
-              <p style={{ marginTop: "6px" }}>
-                That this is a true statement.
-              </p>
-            </div>
+                  <p style={{ textIndent: "-20px", marginBottom: "10px" }}>
+                    (IV) That we have applied for an education loan from State Bank
+                    of India for{" "}
+                    <b>{data.studentName || "____________________"}</b> for{" "}
+                    <b>{data.course}</b> ({data.duration} years) from{" "}
+                    <b>{data.institute || "____________________"}</b>.
+                  </p>
 
-            {/* DEPONENTS */}
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                marginTop: "45px",
-              }}
-            >
-              <div>Deponent (1)</div>
-              <div>Deponent (2)</div>
-            </div>
+                  <p style={{ marginTop: "6px" }}>
+                    That this is a true statement.
+                  </p>
+                </div>
 
-            {/* VERIFICATION */}
-            <div style={{ marginTop: "30px" }}>
-              <p>
-                <b>Verification:-</b>
-              </p>
-              <p style={{ textAlign: "justify", marginTop: "10px" }}>
-                Verified at <b>{data.verificationPlace}</b> on{" "}
-                <b>{data.verificationDate || "__________"}</b> that the contents
-                of the above affidavit are true and correct to the best of my
-                knowledge and belief.
-              </p>
-            </div>
+                {/* DEPONENTS */}
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    marginTop: "45px",
+                  }}
+                >
+                  <div>Deponent (1)</div>
+                  <div>Deponent (2)</div>
+                </div>
 
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                marginTop: "40px",
-              }}
-            >
-              <div>Deponent (1)</div>
-              <div>Deponent (2)</div>
+                {/* VERIFICATION */}
+                <div style={{ marginTop: "30px" }}>
+                  <p>
+                    <b>Verification:-</b>
+                  </p>
+                  <p style={{ textAlign: "justify", marginTop: "10px" }}>
+                    Verified at <b>{data.verificationPlace}</b> on{" "}
+                    <b>{data.verificationDate || "__________"}</b> that the contents
+                    of the above affidavit are true and correct to the best of my
+                    knowledge and belief.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    marginTop: "40px",
+                  }}
+                >
+                  <div>Deponent (1)</div>
+                  <div>Deponent (2)</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

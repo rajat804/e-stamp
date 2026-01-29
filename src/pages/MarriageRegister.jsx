@@ -36,8 +36,9 @@ export default function MarriageRegister() {
         image: { type: "jpeg", quality: 1 },
         html2canvas: {
           scale: 2,
-          backgroundColor: "#ffffff",
           scrollY: 0,
+          backgroundColor: "#ffffff",
+          // scrollY: 0,
         },
         jsPDF: {
           unit: "mm",
@@ -92,115 +93,127 @@ export default function MarriageRegister() {
         </div>
 
         {/* ================= PDF PREVIEW ================= */}
-        <div className="bg-gray-100 p-4 rounded shadow overflow-auto max-h-[90vh]">
-          <div
-            ref={pdfRef}
+        <div className="bg-gray-100 rounded shadow overflow-y-auto flex justify-center h-screen">
+          <div className="flex justify-center"
             style={{
-              width: "210mm",
-              height: "296mm", // ✅ single-page safe
-              backgroundColor: "#ffffff",
-              color: "#000000",
-              fontFamily: "'Times New Roman', Times, serif",
-              fontSize: "12pt",
-              lineHeight: "1.65",
-              padding: "24mm 26mm",
-              boxSizing: "border-box",
-              overflow: "hidden",
-              transform: "scale(0.985)",
-              transformOrigin: "top left",
-            }}
-          >
-            {/* TITLE */}
-            <div
-              style={{
-                textAlign: "center",
-                fontWeight: "bold",
-                textDecoration: "underline",
-                marginBottom: "22px",
-                fontSize: "15pt",
-              }}
-            >
-              AFFIDAVIT
-            </div>
+              width: "100%",
+              maxWidth: "100%",
+            }}>
+            <div style={{
+              width: "100%",
+              maxWidth: "820px",   // 👈 desktop limit
+              aspectRatio: "210 / 297",
+              display: "flex",
+              justifyContent: "center",
+            }}>
+              <div
+                ref={pdfRef}
+                style={{
+                  width: "210mm",
+                  height: "297mm",
+                  backgroundColor: "#fff",
+                  color: "#000",
+                  fontFamily: "'Times New Roman', Times, serif",
+                  fontSize: "12pt",
+                  lineHeight: "1.55",
+                  padding: "25px",
+                  boxSizing: "border-box",
+                  overflow: "hidden",
+                }}
+              >
+                {/* TITLE */}
+                <div
+                  style={{
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    textDecoration: "underline",
+                    marginBottom: "22px",
+                    fontSize: "15pt",
+                  }}
+                >
+                  AFFIDAVIT
+                </div>
 
-            {/* INTRO */}
-            <p style={{ textAlign: "justify" }}>
-              I, <b>{data.groomName || "____________________"}</b> Son of Shri{" "}
-              <b>{data.groomFather || "____________________"}</b> R/O{" "}
-              <b>{data.groomAddress || "____________________"}</b>, do hereby
-              take oath and solemnly affirm and declare as under:-
-            </p>
+                {/* INTRO */}
+                <p style={{ textAlign: "justify" }}>
+                  I, <b>{data.groomName || "____________________"}</b> Son of Shri{" "}
+                  <b>{data.groomFather || "____________________"}</b> R/O{" "}
+                  <b>{data.groomAddress || "____________________"}</b>, do hereby
+                  take oath and solemnly affirm and declare as under:-
+                </p>
 
-            {/* POINTS */}
-            <div style={{ marginLeft: "20px", marginTop: "16px" }}>
-              <p style={{ textIndent: "-20px", marginBottom: "8px" }}>
-                I. That I got married to{" "}
-                <b>{data.brideName || "____________________"}</b> D/O Shri{" "}
-                <b>{data.brideFather || "____________________"}</b> R/O{" "}
-                <b>{data.brideAddress || "____________________"}</b> on{" "}
-                <b>{data.marriageDate || "__________"}</b> at{" "}
-                <b>{data.marriagePlace || "____________________"}</b>.
-              </p>
+                {/* POINTS */}
+                <div style={{ marginLeft: "20px", marginTop: "16px" }}>
+                  <p style={{ textIndent: "-20px", marginBottom: "8px" }}>
+                    I. That I got married to{" "}
+                    <b>{data.brideName || "____________________"}</b> D/O Shri{" "}
+                    <b>{data.brideFather || "____________________"}</b> R/O{" "}
+                    <b>{data.brideAddress || "____________________"}</b> on{" "}
+                    <b>{data.marriageDate || "__________"}</b> at{" "}
+                    <b>{data.marriagePlace || "____________________"}</b>.
+                  </p>
 
-              <p style={{ textIndent: "-20px", marginBottom: "8px" }}>
-                II. That my date of Birth is <b>{data.dob || "__________"}</b>{" "}
-                and I have completed <b>{data.ageAtMarriage || "__"}</b> years
-                of age at the time of marriage.
-              </p>
+                  <p style={{ textIndent: "-20px", marginBottom: "8px" }}>
+                    II. That my date of Birth is <b>{data.dob || "__________"}</b>{" "}
+                    and I have completed <b>{data.ageAtMarriage || "__"}</b> years
+                    of age at the time of marriage.
+                  </p>
 
-              <p style={{ textIndent: "-20px", marginBottom: "8px" }}>
-                III. That I was unmarried till the time of marriage on{" "}
-                <b>{data.marriageDate || "__________"}</b> and I did not have a
-                spouse living at the time of marriage.
-              </p>
+                  <p style={{ textIndent: "-20px", marginBottom: "8px" }}>
+                    III. That I was unmarried till the time of marriage on{" "}
+                    <b>{data.marriageDate || "__________"}</b> and I did not have a
+                    spouse living at the time of marriage.
+                  </p>
 
-              <p style={{ textIndent: "-20px", marginBottom: "8px" }}>
-                IV. That the marriage was conducted as per <b>Hindu</b> Rites.
-              </p>
+                  <p style={{ textIndent: "-20px", marginBottom: "8px" }}>
+                    IV. That the marriage was conducted as per <b>Hindu</b> Rites.
+                  </p>
 
-              <p style={{ textIndent: "-20px", marginBottom: "8px" }}>
-                V. That I belong to <b>Hindu</b> religion.
-              </p>
+                  <p style={{ textIndent: "-20px", marginBottom: "8px" }}>
+                    V. That I belong to <b>Hindu</b> religion.
+                  </p>
 
-              <p style={{ textIndent: "-20px", marginBottom: "8px" }}>
-                VI. That at the time of marriage, I was capable of giving valid
-                consent and of sound mind, not suffering from any mental
-                disorder/insanity.
-              </p>
+                  <p style={{ textIndent: "-20px", marginBottom: "8px" }}>
+                    VI. That at the time of marriage, I was capable of giving valid
+                    consent and of sound mind, not suffering from any mental
+                    disorder/insanity.
+                  </p>
 
-              <p style={{ textIndent: "-20px", marginBottom: "8px" }}>
-                VII. That until the time of marriage I was not related to{" "}
-                <b>{data.brideName || "____________________"}</b> D/O Shri{" "}
-                <b>{data.brideFather || "____________________"}</b> within the
-                prohibited degree of relationship and not spinals as per{" "}
-                <b>Hindu Marriage Act</b>.
-              </p>
+                  <p style={{ textIndent: "-20px", marginBottom: "8px" }}>
+                    VII. That until the time of marriage I was not related to{" "}
+                    <b>{data.brideName || "____________________"}</b> D/O Shri{" "}
+                    <b>{data.brideFather || "____________________"}</b> within the
+                    prohibited degree of relationship and not spinals as per{" "}
+                    <b>Hindu Marriage Act</b>.
+                  </p>
 
-              <p style={{ textIndent: "-20px", marginBottom: "8px" }}>
-                VIII. That I am an Indian citizen.
-              </p>
-            </div>
+                  <p style={{ textIndent: "-20px", marginBottom: "8px" }}>
+                    VIII. That I am an Indian citizen.
+                  </p>
+                </div>
 
-            {/* DEPONENT */}
-            <div style={{ marginTop: "40px", textAlign: "right" }}>
-              DEPONENT
-            </div>
+                {/* DEPONENT */}
+                <div style={{ marginTop: "40px", textAlign: "right", fontWeight: "bold" }}>
+                  DEPONENT
+                </div>
 
-            {/* VERIFICATION */}
-            <div style={{ marginTop: "30px" }}>
-              <p>
-                <b>Verification:-</b>
-              </p>
-              <p style={{ textAlign: "justify", marginTop: "10px" }}>
-                Verified at <b>{data.verificationPlace}</b> on{" "}
-                <b>{data.verificationDate || "__________"}</b> that the above
-                content are true and correct to the best of my knowledge and
-                belief and nothing has been concealed therein.
-              </p>
-            </div>
+                {/* VERIFICATION */}
+                <div style={{ marginTop: "30px" }}>
+                  <p>
+                    <b>Verification:-</b>
+                  </p>
+                  <p style={{ textAlign: "justify", marginTop: "10px" }}>
+                    Verified at <b>{data.verificationPlace}</b> on{" "}
+                    <b>{data.verificationDate || "__________"}</b> that the above
+                    content are true and correct to the best of my knowledge and
+                    belief and nothing has been concealed therein.
+                  </p>
+                </div>
 
-            <div style={{ marginTop: "35px", textAlign: "right" }}>
-              DEPONENT
+                <div style={{ marginTop: "35px", textAlign: "right", fontWeight: "bold" }}>
+                  DEPONENT
+                </div>
+              </div>
             </div>
           </div>
         </div>

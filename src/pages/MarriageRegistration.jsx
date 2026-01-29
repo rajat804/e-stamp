@@ -97,99 +97,119 @@ export default function MarriageRegistration() {
         </div>
 
         {/* ================= PDF PREVIEW ================= */}
-        <div className="bg-gray-100 p-4 rounded shadow overflow-auto max-h-[90vh]">
-          <div ref={pdfRef}>
+        <div className="bg-gray-100 rounded shadow overflow-hidden flex justify-center h-screen">
 
-            {/* ================= PAGE 1 ================= */}
-            <div
-              style={{
-                width: "210mm",
-                height: "296mm",
-                backgroundColor: "#ffffff",
-                fontFamily: "'Times New Roman', Times, serif",
-                fontSize: "12pt",
-                lineHeight: "1.6",
-                padding: "22mm 24mm",
-                boxSizing: "border-box",
-              }}
-            >
-              <div style={{ textAlign: "center", fontWeight: "bold", textDecoration: "underline", fontSize: "15pt", marginBottom: "20px" }}>
-                AFFIDAVIT
+          <div className="flex justify-center"
+            style={{
+              width: "100%",
+              maxWidth: "100%",
+            }}>
+            <div style={{
+              width: "100%",
+              maxWidth: "297mm",   // 👈 desktop limit
+              aspectRatio: "210 / 297",
+              display: "flex",
+              justifyContent: "center",
+            }}>
+              <div ref={pdfRef}>
+
+                {/* ================= PAGE 1 ================= */}
+                <div
+                  style={{
+                    width: "210mm",
+                    height: "297mm",
+                    backgroundColor: "#fff",
+                    color: "#000",
+                    fontFamily: "'Times New Roman', Times, serif",
+                    fontSize: "12pt",
+                    lineHeight: "1.55",
+                    padding: "25px",
+                    boxSizing: "border-box",
+                    overflow: "hidden",
+                  }}
+                >
+                  <div style={{ textAlign: "center", fontWeight: "bold", textDecoration: "underline", fontSize: "15pt", marginBottom: "20px" }}>
+                    AFFIDAVIT
+                  </div>
+
+                  <p>
+                    I, <b>{data.name || "____________________"}</b> S/O{" "}
+                    <b>{data.fatherName || "____________________"}</b> Resident of{" "}
+                    <b>{data.residentOf || "____________________"}</b> do hereby
+                    solemnly affirm and declare as under:-
+                  </p>
+
+                  <p style={{ marginTop: "14px" }}>
+                    1. That I got married <b>{data.spouseName || "____________________"}</b>{" "}
+                    D/O <b>{data.spouseFatherName || "____________________"}</b>{" "}
+                    R/O <b>{data.spouseResidentOf || "____________________"}</b>{" "}
+                    on <b>{data.marriageDate || "__________"}</b> at{" "}
+                    <b>{data.marriagePlace || "____________________"}</b>{" "}
+                    according to <b>{data.marriageAccordingTo || "__________"}</b>.
+                  </p>
+
+                  <p>2. That my date of birth is <b>{data.dob || "__________"}</b>.</p>
+
+                  <p>
+                    3. That I was <b>{data.maritalStatusBefore || "__________"}</b>{" "}
+                    till the time of marriage and or I did not have any other living
+                    spouse at the time of marriage.
+                  </p>
+
+                  <p>
+                    4. That at the time of marriage I was not related to{" "}
+                    <b>____________________</b> with the prohibited degree of
+                    relationship and not spinals as per <b>__________</b>.
+                  </p>
+
+                  <p>5. That I belong to <b>{data.religion || "__________"}</b>.</p>
+
+                  <p>6. That I am citizen of India.</p>
+
+                  <div style={{ marginTop: "40px", textAlign: "right", fontWeight: "bold" }}>
+                    DEPONENT
+                  </div>
+                </div>
+
+                {/* ================= PAGE BREAK ================= */}
+                <div style={{ pageBreakAfter: "always" }} />
+
+                {/* ================= PAGE 2 ================= */}
+                <div
+                  style={{
+                    width: "210mm",
+                    height: "297mm",
+                    backgroundColor: "#fff",
+                    color: "#000",
+                    fontFamily: "'Times New Roman', Times, serif",
+                    fontSize: "12pt",
+                    lineHeight: "1.55",
+                    padding: "20mm 22mm",
+                    boxSizing: "border-box",
+                    overflow: "hidden",
+                  }}
+                >
+                  <div style={{ fontWeight: "bold", textDecoration: "underline", marginBottom: "12px" }}>
+                    VERIFICATION:
+                  </div>
+
+                  <p>
+                    Verified at <b>{data.verificationPlace || "__________"}</b> on{" "}
+                    <b>{data.verificationDay || "__"}</b> day of{" "}
+                    <b>{data.verificationMonth || "__________"}</b>, 2025 that the
+                    contents of this above affidavit are true and correct to the best
+                    of my knowledge and belief and nothing has been concealed
+                    therefrom.
+                  </p>
+
+                  <div style={{ marginTop: "60px", textAlign: "right", fontWeight: "bold" }}>
+                    DEPONENT
+                  </div>
+                </div>
+
               </div>
 
-              <p>
-                I, <b>{data.name || "____________________"}</b> S/O{" "}
-                <b>{data.fatherName || "____________________"}</b> Resident of{" "}
-                <b>{data.residentOf || "____________________"}</b> do hereby
-                solemnly affirm and declare as under:-
-              </p>
-
-              <p style={{ marginTop: "14px" }}>
-                1. That I got married <b>{data.spouseName || "____________________"}</b>{" "}
-                D/O <b>{data.spouseFatherName || "____________________"}</b>{" "}
-                R/O <b>{data.spouseResidentOf || "____________________"}</b>{" "}
-                on <b>{data.marriageDate || "__________"}</b> at{" "}
-                <b>{data.marriagePlace || "____________________"}</b>{" "}
-                according to <b>{data.marriageAccordingTo || "__________"}</b>.
-              </p>
-
-              <p>2. That my date of birth is <b>{data.dob || "__________"}</b>.</p>
-
-              <p>
-                3. That I was <b>{data.maritalStatusBefore || "__________"}</b>{" "}
-                till the time of marriage and or I did not have any other living
-                spouse at the time of marriage.
-              </p>
-
-              <p>
-                4. That at the time of marriage I was not related to{" "}
-                <b>____________________</b> with the prohibited degree of
-                relationship and not spinals as per <b>__________</b>.
-              </p>
-
-              <p>5. That I belong to <b>{data.religion || "__________"}</b>.</p>
-
-              <p>6. That I am citizen of India.</p>
-
-              <div style={{ marginTop: "40px", textAlign: "right", fontWeight: "bold" }}>
-                DEPONENT
-              </div>
             </div>
-
-            {/* ================= PAGE BREAK ================= */}
-            <div style={{ pageBreakAfter: "always" }} />
-
-            {/* ================= PAGE 2 ================= */}
-            <div
-              style={{
-                width: "210mm",
-                height: "296mm",
-                backgroundColor: "#ffffff",
-                fontFamily: "'Times New Roman', Times, serif",
-                fontSize: "12pt",
-                lineHeight: "1.6",
-                padding: "22mm 24mm",
-                boxSizing: "border-box",
-              }}
-            >
-              <div style={{ fontWeight: "bold", textDecoration: "underline", marginBottom: "12px" }}>
-                VERIFICATION:
-              </div>
-
-              <p>
-                Verified at <b>{data.verificationPlace || "__________"}</b> on{" "}
-                <b>{data.verificationDay || "__"}</b> day of{" "}
-                <b>{data.verificationMonth || "__________"}</b>, 2025 that the
-                contents of this above affidavit are true and correct to the best
-                of my knowledge and belief and nothing has been concealed
-                therefrom.
-              </p>
-
-              <div style={{ marginTop: "60px", textAlign: "right", fontWeight: "bold" }}>
-                DEPONENT
-              </div>
-            </div>
-
           </div>
         </div>
 

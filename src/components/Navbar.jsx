@@ -44,6 +44,7 @@ export default function Navbar() {
         { name: "Income Certificate", path: "/income" },
         { name: "Name Change", path: "/name-change" },
         { name: "Marriage Register", path: "/marriage-register" },
+        {name: "Rental Agreements", path: "/rental-agreements"}
       ],
     },
     {

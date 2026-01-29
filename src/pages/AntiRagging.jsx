@@ -77,123 +77,136 @@ export default function AntiRagging() {
         </div>
 
         {/* ================= PDF PREVIEW ================= */}
-        <div className="bg-gray-100 p-4 rounded shadow overflow-auto max-h-[90vh]">
-          <div
-            ref={pdfRef}
+        <div className="bg-gray-100 rounded shadow overflow-hidden flex justify-center h-[120vh]">
+          <div className="flex justify-center"
             style={{
-              width: "210mm",
-              height: "296mm",
-              backgroundColor: "#ffffff",
-              color: "#000000",
-              fontFamily: "'Times New Roman', Times, serif",
-              fontSize: "12pt",
-              lineHeight: "1.6",
-              padding: "22mm 24mm",
-              boxSizing: "border-box",
-              overflow: "hidden",
-              transform: "scale(0.985)",
-              transformOrigin: "top left",
-            }}
-          >
-            {/* TITLE */}
-            <div style={{ textAlign: "center", fontWeight: "bold", marginBottom: "6px" }}>
-              ANTI RAGGING
-            </div>
-            <div
-              style={{
-                textAlign: "center",
-                fontWeight: "bold",
-                textDecoration: "underline",
-                marginBottom: "18px",
-              }}
-            >
-              UNDERTAKING AFFIDAVIT
-            </div>
+              width: "100%",
+              maxWidth: "100%",
+            }}>
+            <div style={{
+              width: "100%",
+              maxWidth: "820px",   // 👈 desktop limit
+              aspectRatio: "210 / 297",
+              display: "flex",
+              justifyContent: "center",
+            }}>
 
-            {/* INTRO */}
-            <p style={{ textAlign: "justify" }}>
-              I, <b>{data.studentName || "____________________"}</b>{" "}
-              {data.relationType}{" "}
-              <b>{data.fatherName || "____________________"}</b>{" "}
-              R/O <b>{data.address || "____________________"}</b>, aged{" "}
-              <b>{data.age || "__"}</b> years, presently residing in allotted
-              room in <b>{data.hostelName || "____________________"}</b> hostel,
-              do hereby solemnly affirm, undertake, and declare as under:-
-            </p>
+              <div
+                ref={pdfRef}
+                style={{
+                  width: "210mm",
+                  height: "297mm",
+                  backgroundColor: "#fff",
+                  color: "#000",
+                  fontFamily: "'Times New Roman', Times, serif",
+                  fontSize: "12pt",
+                  lineHeight: "1.55",
+                  padding: "25px",
+                  boxSizing: "border-box",
+                  overflow: "hidden",
+                }}
+              >
+                {/* TITLE */}
+                <div style={{ textAlign: "center", fontWeight: "bold", marginBottom: "6px" }}>
+                  ANTI RAGGING
+                </div>
+                <div
+                  style={{
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    textDecoration: "underline",
+                    marginBottom: "18px",
+                  }}
+                >
+                  UNDERTAKING AFFIDAVIT
+                </div>
 
-            {/* POINTS */}
-            <div style={{ marginLeft: "16px", marginTop: "14px" }}>
-              <p style={{ textIndent: "-16px", marginBottom: "10px" }}>
-                1. That my parents and I have obtained and read the prospectus,
-                hostel book containing Anti Ragging regulations of the
-                University and have read them thoroughly, undertake to abide by
-                them in letter and spirit. I understand that my failure to abide
-                by any of them shall make me liable to disciplinary action
-                including rustication by the college authorities. I understand
-                that the decision by the administration in this regard shall be
-                binding and final for me.
-              </p>
+                {/* INTRO */}
+                <p style={{ textAlign: "justify" }}>
+                  I, <b>{data.studentName || "____________________"}</b>{" "}
+                  {data.relationType}{" "}
+                  <b>{data.fatherName || "____________________"}</b>{" "}
+                  R/O <b>{data.address || "____________________"}</b>, aged{" "}
+                  <b>{data.age || "__"}</b> years, presently residing in allotted
+                  room in <b>{data.hostelName || "____________________"}</b> hostel,
+                  do hereby solemnly affirm, undertake, and declare as under:-
+                </p>
 
-              <p style={{ textIndent: "-16px", marginBottom: "10px" }}>
-                2. That I understand that Ragging is an offence and punishable by
-                law as per the direction of the Hon’ble Supreme Court of India.
-              </p>
+                {/* POINTS */}
+                <div style={{ marginLeft: "16px", marginTop: "14px" }}>
+                  <p style={{ textIndent: "-16px", marginBottom: "10px" }}>
+                    1. That my parents and I have obtained and read the prospectus,
+                    hostel book containing Anti Ragging regulations of the
+                    University and have read them thoroughly, undertake to abide by
+                    them in letter and spirit. I understand that my failure to abide
+                    by any of them shall make me liable to disciplinary action
+                    including rustication by the college authorities. I understand
+                    that the decision by the administration in this regard shall be
+                    binding and final for me.
+                  </p>
 
-              <p style={{ textIndent: "-16px", marginBottom: "10px" }}>
-                3. That I understand that Ragging in any form is strictly
-                prohibited.
-              </p>
+                  <p style={{ textIndent: "-16px", marginBottom: "10px" }}>
+                    2. That I understand that Ragging is an offence and punishable by
+                    law as per the direction of the Hon’ble Supreme Court of India.
+                  </p>
 
-              <p style={{ textIndent: "-16px", marginBottom: "10px" }}>
-                4. I have read the relevant instruction/regulations regarding
-                Ragging and understand that it is punishable as per law. If I
-                indulge in Ragging of any sort in hostel/campus and been found
-                guilty the Administration can take action as stipulated by law
-                and FIR may be lodge.
-              </p>
+                  <p style={{ textIndent: "-16px", marginBottom: "10px" }}>
+                    3. That I understand that Ragging in any form is strictly
+                    prohibited.
+                  </p>
 
-              <p style={{ textIndent: "-16px", marginBottom: "10px" }}>
-                5. I will abide with the rules of the Hostel and will not indulge
-                in any type of ragging activities.
-              </p>
-            </div>
+                  <p style={{ textIndent: "-16px", marginBottom: "10px" }}>
+                    4. I have read the relevant instruction/regulations regarding
+                    Ragging and understand that it is punishable as per law. If I
+                    indulge in Ragging of any sort in hostel/campus and been found
+                    guilty the Administration can take action as stipulated by law
+                    and FIR may be lodge.
+                  </p>
 
-            <p style={{ marginTop: "14px" }}>
-              I have also read and understood the above contents.
-            </p>
+                  <p style={{ textIndent: "-16px", marginBottom: "10px" }}>
+                    5. I will abide with the rules of the Hostel and will not indulge
+                    in any type of ragging activities.
+                  </p>
+                </div>
 
-            {/* SIGNATURES */}
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                marginTop: "25px",
-              }}
-            >
-              <div>Signature of Guardian/parent:</div>
-              <div>Signature of Student</div>
-            </div>
+                <p style={{ marginTop: "14px" }}>
+                  I have also read and understood the above contents.
+                </p>
 
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                marginTop: "18px",
-              }}
-            >
-              <div>
-                Name: <b>{data.guardianName || "____________________"}</b>
-                <br />
-                Relation: <b>{data.guardianRelation}</b>
-                <br />
-                Address: <b>{data.guardianAddress || "____________________"}</b>
-                <br />
-                Dated: <b>{data.date || "__/__/____"}</b>
-              </div>
-              <div>
-                Name: <b>{data.studentName || "____________________"}</b>
-                <br />
-                Date: <b>{data.date || "__/__/____"}</b>
+                {/* SIGNATURES */}
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    marginTop: "25px",
+                  }}
+                >
+                  <div>Signature of Guardian/parent:</div>
+                  <div>Signature of Student</div>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    marginTop: "18px",
+                  }}
+                >
+                  <div>
+                    Name: <b>{data.guardianName || "____________________"}</b>
+                    <br />
+                    Relation: <b>{data.guardianRelation}</b>
+                    <br />
+                    Address: <b>{data.guardianAddress || "____________________"}</b>
+                    <br />
+                    Dated: <b>{data.date || "__/__/____"}</b>
+                  </div>
+                  <div>
+                    Name: <b>{data.studentName || "____________________"}</b>
+                    <br />
+                    Date: <b>{data.date || "__/__/____"}</b>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

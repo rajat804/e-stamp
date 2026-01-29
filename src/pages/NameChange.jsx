@@ -79,93 +79,106 @@ export default function NameChange() {
         </div>
 
         {/* ================= PDF PREVIEW ================= */}
-        <div className="bg-gray-100 p-4 rounded shadow overflow-auto max-h-[90vh]">
-          <div
-            ref={pdfRef}
+        <div className="bg-gray-100 rounded shadow overflow-hidden flex justify-center h-screen">
+          <div className="flex justify-center"
             style={{
-              width: "210mm",
-              height: "296mm", // ✅ one-page safe
-              backgroundColor: "#ffffff",
-              color: "#000000",
-              fontFamily: "'Times New Roman', Times, serif",
-              fontSize: "12pt",
-              lineHeight: "1.65",
-              padding: "24mm 26mm",
-              boxSizing: "border-box",
-              overflow: "hidden",
-              transform: "scale(0.985)",
-              transformOrigin: "top left",
-            }}
-          >
-            {/* TITLE */}
-            <div
-              style={{
-                textAlign: "center",
-                fontWeight: "bold",
-                textDecoration: "underline",
-                marginBottom: "22px",
-                fontSize: "15pt",
-              }}
-            >
-              AFFIDAVIT
-            </div>
+              width: "100%",
+              maxWidth: "100%",
+            }}>
+            <div style={{
+              width: "100%",
+              maxWidth: "820px",   // 👈 desktop limit
+              aspectRatio: "210 / 297",
+              display: "flex",
+              justifyContent: "center",
+            }}>
+              <div
+                ref={pdfRef}
+                style={{
+                 width: "210mm",
+                  height: "297mm",
+                  backgroundColor: "#fff",
+                  color: "#000",
+                  fontFamily: "'Times New Roman', Times, serif",
+                  fontSize: "12pt",
+                  lineHeight: "1.55",
+                  padding: "20mm 22mm",
+                  boxSizing: "border-box",
+                  overflow: "hidden",
+                }}
+              >
+                {/* TITLE */}
+                <div
+                  style={{
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    textDecoration: "underline",
+                    marginBottom: "22px",
+                    fontSize: "15pt",
+                  }}
+                >
+                  AFFIDAVIT
+                </div>
 
-            {/* INTRO */}
-            <p style={{ textAlign: "justify" }}>
-              I, <b>{data.name || "____________________"}</b>{" "}
-              {data.relationType}{" "}
-              <b>{data.husbandName || "____________________"}</b>{" "}
-              R/O <b>{data.address || "____________________"}</b>, do hereby
-              solemnly affirm and declare as under:-
-            </p>
+                {/* INTRO */}
+                <p style={{ textAlign: "justify" }}>
+                  I, <b>{data.name || "____________________"}</b>{" "}
+                  {data.relationType}{" "}
+                  <b>{data.husbandName || "____________________"}</b>{" "}
+                  R/O <b>{data.address || "____________________"}</b>, do hereby
+                  solemnly affirm and declare as under:-
+                </p>
 
-            {/* POINTS */}
-            <div style={{ marginLeft: "20px", marginTop: "16px" }}>
-              <p style={{ textIndent: "-20px", marginBottom: "10px" }}>
-                1. That I am citizen of India.
-              </p>
+                {/* POINTS */}
+                <div style={{ marginLeft: "20px", marginTop: "16px" }}>
+                  <p style={{ textIndent: "-20px", marginBottom: "10px" }}>
+                    1. That I am citizen of India.
+                  </p>
 
-              <p style={{ textIndent: "-20px", marginBottom: "10px" }}>
-                2. That I am residing on above said address.
-              </p>
+                  <p style={{ textIndent: "-20px", marginBottom: "10px" }}>
+                    2. That I am residing on above said address.
+                  </p>
 
-              <p style={{ textIndent: "-20px", marginBottom: "10px" }}>
-                3. That my name mentioned in my son school record{" "}
-                <b>{data.correctName || "__________"}</b> as{" "}
-                <b>{data.wrongName || "__________"}</b> which is not correct.
-              </p>
+                  <p style={{ textIndent: "-20px", marginBottom: "10px" }}>
+                    3. That my name mentioned in my son school record{" "}
+                    <b>{data.correctName || "__________"}</b> as{" "}
+                    <b>{data.wrongName || "__________"}</b> which is not correct.
+                  </p>
 
-              <p style={{ textIndent: "-20px", marginBottom: "10px" }}>
-                4. That I want to change my name in my son school record as{" "}
-                <b>{data.correctName || "__________"}</b> for all purposes in
-                future.
-              </p>
+                  <p style={{ textIndent: "-20px", marginBottom: "10px" }}>
+                    4. That I want to change my name in my son school record as{" "}
+                    <b>{data.correctName || "__________"}</b> for all purposes in
+                    future.
+                  </p>
 
-              <p style={{ textIndent: "-20px", marginBottom: "10px" }}>
-                5. That it is my true and correct statement.
-              </p>
-            </div>
+                  <p style={{ textIndent: "-20px", marginBottom: "10px" }}>
+                    5. That it is my true and correct statement.
+                  </p>
+                </div>
 
-            {/* DEPONENT */}
-            <div style={{ marginTop: "40px", textAlign: "right" }}>
-              Deponent
-            </div>
+                {/* DEPONENT */}
+                <div style={{ marginTop: "40px", textAlign: "right", fontWeight: "bold" }}>
+                  DEPONENT 
+                </div>
 
-            {/* VERIFICATION */}
-            <div style={{ marginTop: "30px" }}>
-              <p>
-                <b>Verification:-</b>
-              </p>
-              <p style={{ textAlign: "justify", marginTop: "10px" }}>
-                Verified at <b>{data.verificationPlace}</b> on{" "}
-                <b>{data.verificationDate || "__________"}</b>, that the all
-                contents of this affidavit are true to the best of my knowledge
-                and belief.
-              </p>
-            </div>
+                {/* VERIFICATION */}
+                <div style={{ marginTop: "30px" }}>
+                  <p>
+                    <b>Verification:-</b>
+                  </p>
+                  <p style={{ textAlign: "justify", marginTop: "10px" }}>
+                    Verified at <b>{data.verificationPlace}</b> on{" "}
+                    <b>{data.verificationDate || "__________"}</b>, that the all
+                    contents of this affidavit are true to the best of my knowledge
+                    and belief.
+                  </p>
+                </div>
 
-            <div style={{ marginTop: "35px", textAlign: "right" }}>
-              Deponent
+                <div style={{ marginTop: "35px", textAlign: "right", fontWeight: "bold" }}>
+                  DEPONENT 
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

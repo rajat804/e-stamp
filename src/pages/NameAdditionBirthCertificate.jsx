@@ -89,105 +89,118 @@ export default function NameAdditionBirthCertificate() {
         </div>
 
         {/* ================= PDF PREVIEW ================= */}
-        <div className="bg-gray-100 p-4 rounded shadow overflow-auto max-h-[90vh]">
-          <div
-            ref={pdfRef}
+        <div className="bg-gray-100 rounded shadow overflow-hidden flex justify-center max-h-screen">
+          <div className="flex justify-center"
             style={{
-              width: "210mm",
-              height: "296mm",                 // ✅ single page safe
-              backgroundColor: "#ffffff",
-              color: "#000000",
-              fontFamily: "'Times New Roman', Times, serif",
-              fontSize: "12pt",
-              lineHeight: "1.6",
-              padding: "22mm 24mm",
-              boxSizing: "border-box",
-              overflow: "hidden",
-              transform: "scale(0.985)",       // ✅ rounding fix
-              transformOrigin: "top left",
-            }}
-          >
-            {/* TITLE */}
-            <div
-              style={{
-                textAlign: "center",
-                fontSize: "15pt",
-                fontWeight: "bold",
-                textDecoration: "underline",
-                marginBottom: "22px",
-              }}
-            >
-              AFFIDAVIT
-            </div>
+              width: "100%",
+              maxWidth: "100%",
+            }}>
+            <div style={{
+              width: "100%",
+              maxWidth: "820px",   // 👈 desktop limit
+              aspectRatio: "210 / 297",
+              display: "flex",
+              justifyContent: "center",
+            }}>
+              <div
+                ref={pdfRef}
+                style={{
+                  width: "210mm",
+                  height: "297mm",
+                  backgroundColor: "#fff",
+                  color: "#000",
+                  fontFamily: "'Times New Roman', Times, serif",
+                  fontSize: "12pt",
+                  lineHeight: "1.55",
+                  padding: "25px",
+                  boxSizing: "border-box",
+                  overflow: "hidden", 
+                }}
+              >
+                {/* TITLE */}
+                <div
+                  style={{
+                    textAlign: "center",
+                    fontSize: "15pt",
+                    fontWeight: "bold",
+                    textDecoration: "underline",
+                    marginBottom: "22px",
+                  }}
+                >
+                  AFFIDAVIT
+                </div>
 
-            {/* INTRO */}
-            <p style={{ textAlign: "justify", marginBottom: "16px" }}>
-              I,{" "}
-              <b>{data.name || "____________________"}</b>{" "}
-              <b>{data.relationType}</b>{" "}
-              <b>{data.relationName || "____________________"}</b>{" "}
-              R/O{" "}
-              <b>{data.residentOf || "____________________"}</b>, do hereby
-              solemnly affirm and declare as under:-
-            </p>
+                {/* INTRO */}
+                <p style={{ textAlign: "justify", marginBottom: "16px" }}>
+                  I,{" "}
+                  <b>{data.name || "____________________"}</b>{" "}
+                  <b>{data.relationType}</b>{" "}
+                  <b>{data.relationName || "____________________"}</b>{" "}
+                  R/O{" "}
+                  <b>{data.residentOf || "____________________"}</b>, do hereby
+                  solemnly affirm and declare as under:-
+                </p>
 
-            {/* POINTS */}
-            <div style={{ marginLeft: "14px" }}>
-              <p style={{ margin: "12px 0", textIndent: "-14px" }}>
-                1. That I am a citizen of India.
-              </p>
+                {/* POINTS */}
+                <div style={{ marginLeft: "14px" }}>
+                  <p style={{ margin: "12px 0", textIndent: "-14px" }}>
+                    1. That I am a citizen of India.
+                  </p>
 
-              <p style={{ margin: "12px 0", textIndent: "-14px" }}>
-                2. That I/My wife delivered a{" "}
-                <b>{data.childGender || "__________"}</b>{" "}
-                baby child on{" "}
-                <b>{data.birthDate || "__________"}</b>{" "}
-                at{" "}
-                <b>{data.birthPlace || "__________"}</b>.
-              </p>
+                  <p style={{ margin: "12px 0", textIndent: "-14px" }}>
+                    2. That I/My wife delivered a{" "}
+                    <b>{data.childGender || "__________"}</b>{" "}
+                    baby child on{" "}
+                    <b>{data.birthDate || "__________"}</b>{" "}
+                    at{" "}
+                    <b>{data.birthPlace || "__________"}</b>.
+                  </p>
 
-              <p style={{ margin: "12px 0", textIndent: "-14px" }}>
-                3. That my son/daughter Birth Certificate Registration Number is{" "}
-                <b>{data.certificateNumber || "__________"}</b>{" "}
-                dated{" "}
-                <b>{data.certificateDate || "__________"}</b>.
-              </p>
+                  <p style={{ margin: "12px 0", textIndent: "-14px" }}>
+                    3. That my son/daughter Birth Certificate Registration Number is{" "}
+                    <b>{data.certificateNumber || "__________"}</b>{" "}
+                    dated{" "}
+                    <b>{data.certificateDate || "__________"}</b>.
+                  </p>
 
-              <p style={{ margin: "12px 0", textIndent: "-14px" }}>
-                4. That I want to include my child name in his/her Birth Certificate.
-              </p>
+                  <p style={{ margin: "12px 0", textIndent: "-14px" }}>
+                    4. That I want to include my child name in his/her Birth Certificate.
+                  </p>
 
-              <p style={{ margin: "12px 0", textIndent: "-14px" }}>
-                5. That it is my true and correct statement.
-              </p>
-            </div>
+                  <p style={{ margin: "12px 0", textIndent: "-14px" }}>
+                    5. That it is my true and correct statement.
+                  </p>
+                </div>
 
-            {/* DEPONENT */}
-            <div style={{ marginTop: "45px", textAlign: "right", fontWeight: "bold" }}>
-              DEPONENT
-            </div>
+                {/* DEPONENT */}
+                <div style={{ marginTop: "45px", textAlign: "right", fontWeight: "bold" }}>
+                  DEPONENT
+                </div>
 
-            {/* VERIFICATION */}
-            <div style={{ marginTop: "40px" }}>
-              <div style={{ fontWeight: "bold", marginBottom: "12px" }}>
-                VERIFICATION
+                {/* VERIFICATION */}
+                <div style={{ marginTop: "40px" }}>
+                  <div style={{ fontWeight: "bold", marginBottom: "12px" }}>
+                    VERIFICATION
+                  </div>
+
+                  <p style={{ textAlign: "justify" }}>
+                    Verified at{" "}
+                    <b>{data.verificationPlace || "__________"}</b>{" "}
+                    on this{" "}
+                    <b>{data.verificationDay || "__"}</b>{" "}
+                    day of{" "}
+                    <b>{data.verificationMonth || "__________"}</b>, 2025 that the
+                    contents of the above affidavit are true and correct to the best
+                    of my knowledge and belief and nothing material has been
+                    concealed therefrom.
+                  </p>
+
+                  <div style={{ marginTop: "25px", textAlign: "right", fontWeight: "bold" }}>
+                    DEPONENT
+                  </div>
+                </div>
               </div>
 
-              <p style={{ textAlign: "justify" }}>
-                Verified at{" "}
-                <b>{data.verificationPlace || "__________"}</b>{" "}
-                on this{" "}
-                <b>{data.verificationDay || "__"}</b>{" "}
-                day of{" "}
-                <b>{data.verificationMonth || "__________"}</b>, 2025 that the
-                contents of the above affidavit are true and correct to the best
-                of my knowledge and belief and nothing material has been
-                concealed therefrom.
-              </p>
-
-              <div style={{ marginTop: "45px", textAlign: "right", fontWeight: "bold" }}>
-                DEPONENT
-              </div>
             </div>
           </div>
         </div>
